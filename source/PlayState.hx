@@ -1,3 +1,5 @@
+package;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -25,23 +27,23 @@ class PlayState extends FlxState {
 
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-	}
-
-	public function onMouseOut(s:FlxSprite) {
-		trace("Mouse Out, sprite at: " + s.x + "," + s.y + " Mouse at: " + FlxG.mouse.getPosition());
 		if (FlxG.keys.enabled) {
 			if (FlxG.keys.pressed.LEFT)
 				sprite.x--;
 			if (FlxG.keys.pressed.RIGHT)
 				sprite.x++;
-			if (FlxG.keys.justReleased.UP)
+			if (FlxG.keys.pressed.UP)
 				sprite.y--;
-			if (FlxG.keys.justReleased.DOWN)
+			if (FlxG.keys.pressed.DOWN)
 				sprite.y++;
 			if (FlxG.keys.anyPressed([FlxKey.ESCAPE, FlxKey.SPACE])) {
 				sprite.x = FlxG.width / 2 - sprite.width / 2;
 				sprite.y = FlxG.height / 2 - sprite.height / 2;
 			}
 		}
+	}
+
+	public function onMouseOut(s:FlxSprite) {
+		trace("Mouse Out, sprite at: " + s.x + "," + s.y + " Mouse at: " + FlxG.mouse.getPosition());
 	}
 }
